@@ -26,7 +26,12 @@ import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
 import Ruler from './ruler';
 
-const Editor = () => {
+
+interface EditorProps {
+  initialContent?:string | undefined
+}
+
+const Editor = ({initialContent}: EditorProps) => {
 
   const { setEditor } = useEditorStore();
 
@@ -102,7 +107,7 @@ const Editor = () => {
         defaultLineHeight: "normal"
       })
     ],
-    content: '<p>Hello World!</p>',
+    // content: '<p>Hello World!</p>',
     // content: `
     //   <table>
     //     <tbody>
