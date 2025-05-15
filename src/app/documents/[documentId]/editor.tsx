@@ -26,12 +26,16 @@ import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
 import Ruler from './ruler';
 
+import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
+import { Threads } from './threads';
 
 interface EditorProps {
   initialContent?:string | undefined
 }
 
 const Editor = ({initialContent}: EditorProps) => {
+
+const liveblocks = useLiveblocksExtension();
 
   const { setEditor } = useEditorStore();
 
@@ -69,7 +73,11 @@ const Editor = ({initialContent}: EditorProps) => {
       }
     },
     extensions: [
-      StarterKit,
+       // live
+      liveblocks,
+      StarterKit.configure({ 
+        history: false
+      }),
       Underline,
       Strike.extend({
         addKeyboardShortcuts() {
@@ -105,25 +113,9 @@ const Editor = ({initialContent}: EditorProps) => {
       LineHeightExtension.configure({
         types: ['heading', 'paragraph'],
         defaultLineHeight: "normal"
-      })
+      }),
+     
     ],
-    // content: '<p>Hello World!</p>',
-    // content: `
-    //   <table>
-    //     <tbody>
-    //       <tr>
-    //         <th>Name</th>
-    //         <th colspan="3">Description</th>
-    //       </tr>
-    //       <tr>
-    //         <td>Cyndi Lauper</td>
-    //         <td>Singer</td>
-    //         <td>Songwriter</td>
-    //         <td>Actress</td>
-    //       </tr>
-    //     </tbody>
-    //   </table>
-    // `,
   });
 
   return (
@@ -131,6 +123,7 @@ const Editor = ({initialContent}: EditorProps) => {
       <Ruler />
       <div className='min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0'>
         <EditorContent editor={editor} />
+        <Threads editor={editor}/>
       </div>
 
     </div>

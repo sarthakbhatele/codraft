@@ -498,7 +498,7 @@ const LineHeightButton = () => {
         },
         {
             label: "1.15", value: "1.15",
-        }, 
+        },
         {
             label: "1.5", value: "1.5",
         },
@@ -609,16 +609,17 @@ const ToolBar = () => {
                 },
             ],
             [
+                // currently pop doesnt show
                 {
                     label: "Comment",
                     icon: MessageSquarePlus,
-                    onClick: () => console.log('commented'),
-                    isActive: false
+                    onClick: () => editor?.chain().focus().addPendingComment().run(),
+                    isActive: editor?.isActive("liveblocksCommentMark")
                 },
                 {
                     label: "List Todo",
                     icon: ListTodo,
-                    onClick: () => editor?.chain().focus().toggleTaskList().run(),
+                    onClick: () =>  editor?.chain().focus().toggleTaskList().run() ,
                     isActive: editor?.isActive("tasklist")
                 },
                 {
