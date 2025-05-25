@@ -609,7 +609,7 @@ const ToolBar = () => {
                 },
             ],
             [
-                // currently pop doesnt show
+
                 {
                     label: "Comment",
                     icon: MessageSquarePlus,
@@ -619,7 +619,7 @@ const ToolBar = () => {
                 {
                     label: "List Todo",
                     icon: ListTodo,
-                    onClick: () =>  editor?.chain().focus().toggleTaskList().run() ,
+                    onClick: () => editor?.chain().focus().toggleTaskList().run(),
                     isActive: editor?.isActive("tasklist")
                 },
                 {

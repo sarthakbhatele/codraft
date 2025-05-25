@@ -30,12 +30,12 @@ import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tipta
 import { Threads } from './threads';
 
 interface EditorProps {
-  initialContent?:string | undefined
+  initialContent?: string | undefined
 }
 
-const Editor = ({initialContent}: EditorProps) => {
+const Editor = ({ initialContent }: EditorProps) => {
 
-const liveblocks = useLiveblocksExtension();
+  const liveblocks = useLiveblocksExtension();
 
   const { setEditor } = useEditorStore();
 
@@ -73,9 +73,9 @@ const liveblocks = useLiveblocksExtension();
       }
     },
     extensions: [
-       // live
+      // live
       liveblocks,
-      StarterKit.configure({ 
+      StarterKit.configure({
         history: false
       }),
       Underline,
@@ -114,7 +114,7 @@ const liveblocks = useLiveblocksExtension();
         types: ['heading', 'paragraph'],
         defaultLineHeight: "normal"
       }),
-     
+
     ],
   });
 
@@ -123,9 +123,8 @@ const liveblocks = useLiveblocksExtension();
       <Ruler />
       <div className='min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0'>
         <EditorContent editor={editor} />
-        <Threads editor={editor}/>
+        <Threads editor={editor}  />
       </div>
-
     </div>
   )
 }

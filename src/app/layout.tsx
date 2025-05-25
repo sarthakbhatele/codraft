@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NuqsAdapter>
           <ConvexClientProvider>
-            <Toaster position="top-right" richColors/>
+            <Toaster position="top-center" richColors toastOptions={{ duration: 2000 }} />
             {children}
           </ConvexClientProvider>
         </NuqsAdapter>
