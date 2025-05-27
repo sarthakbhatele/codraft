@@ -1,24 +1,68 @@
-'use server'
+// 'use server'
 
+// import { auth, clerkClient } from "@clerk/nextjs/server"
+
+// export async function getUsers() {
+//     const {sessionClaims} = await auth();
+//     const clerk = await clerkClient();
+
+//     const response = await clerk.users.getUserList({
+//         organizationId: [sessionClaims?.org_id as string]
+//     })
+
+//     const users = response.data.map((user)=>({
+//         id: user.id,
+//         name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
+//         avatar: user.imageUrl
+//     }));
+
+//     return users
+// }
+
+'use server'
 import { auth, clerkClient } from "@clerk/nextjs/server"
+import { ConvexHttpClient } from "convex/browser";
+import { Id } from "../../../../convex/_generated/dataModel";
+import { api } from "../../../../convex/_generated/api";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
+
+export async function getDocuments(ids:Id<"documents">[]) {
+    return await convex.query(api.documents.getByIds, {ids})
+}
 
 export async function getUsers() {
-    const {sessionClaims} = await auth();
+    const { sessionClaims } = await auth();
+    // console.log("Session claims:", sessionClaims);
+
+    const orgId = (sessionClaims?.o as { id?: string })?.id;
+
+    if (!orgId) {
+        console.log("No org_id found inside sessionClaims.o");
+        return [];
+    }
+
     const clerk = await clerkClient();
 
     const response = await clerk.users.getUserList({
-        organizationId: [sessionClaims?.org_id as string]
-    })
+        organizationId: [orgId]
+    });
 
-    const users = response.data.map((user)=>({
+    const users = response.data.map((user) => ({
         id: user.id,
         name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
         avatar: user.imageUrl
     }));
 
-    return users
+    // console.log("Mapped users:", users);
+
+    return users;
 }
 
+
+
+
+// ======
 
 // 'use server';
 

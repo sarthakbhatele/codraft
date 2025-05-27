@@ -36,7 +36,7 @@ const AvatarStack = () => {
                     })}
                 </div>
             </div>
-            <div className="h-6 w-px bg-neutral-400" />
+            <div className="h-6 w-[2px] bg-neutral-400" />
         </>
     )
 }
