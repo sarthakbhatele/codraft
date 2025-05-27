@@ -28,12 +28,16 @@ import Ruler from './ruler';
 
 import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
 import { Threads } from './threads';
+import { useStorage } from '@liveblocks/react';
 
 interface EditorProps {
   initialContent?: string | undefined
 }
 
 const Editor = ({ initialContent }: EditorProps) => {
+
+  const leftMargin = useStorage((root) => root.leftMargin);
+  const rightMargin = useStorage((root) => root.rightMargin);
 
   const liveblocks = useLiveblocksExtension();
 
@@ -68,7 +72,7 @@ const Editor = ({ initialContent }: EditorProps) => {
     },
     editorProps: {
       attributes: {
-        style: "padding-left:56px; padding-right:56px; ",
+        style: `padding-left:${leftMargin ?? 56}px; padding-${rightMargin ?? 56}px;`,
         class: "focus:outline-none print:border-0 bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text"
       }
     },
@@ -123,7 +127,7 @@ const Editor = ({ initialContent }: EditorProps) => {
       <Ruler />
       <div className='min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0'>
         <EditorContent editor={editor} />
-        <Threads editor={editor}  />
+        <Threads editor={editor} />
       </div>
     </div>
   )
