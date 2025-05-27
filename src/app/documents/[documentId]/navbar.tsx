@@ -14,6 +14,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { Avatars } from "./avatar";
 
 const Navbar = () => {
 
@@ -297,6 +298,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex gap-3 items-center">
+                <Avatars />
                 <OrganizationSwitcher
                     afterCreateOrganizationUrl={'/'}
                     afterLeaveOrganizationUrl="/"
