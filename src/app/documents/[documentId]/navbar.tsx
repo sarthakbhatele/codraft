@@ -16,11 +16,34 @@ import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Avatars } from "./avatar";
 import Inbox from "./inbox";
+import { Doc } from "../../../../convex/_generated/dataModel";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+interface NavbarProps {
+    data: Doc<"documents">
+}
 
+const Navbar = ({ data }: NavbarProps) => {
+
+    const router = useRouter();
     const { editor } = useEditorStore(); // extracting editor to implement it in navbar
 
+
+    const mutation = useMutation(api.documents.create);
+    const onNewDocument = () => {
+        mutation({
+            title: "Untitled document",
+            initialContent: ""
+        })
+            .catch(() => toast.error("Something went "))
+            .then((id) => {
+                toast.success("Documnet created successfully")
+                router.push(`/documents/${id}`)
+            })
+    }
     //fn's for inserting table
     const [isTableMenuOpen, setIsTableMenuOpen] = useState(false)
     const insertTable = (rows: number, cols: number) => {
@@ -54,7 +77,7 @@ const Navbar = () => {
         const blob = new Blob([JSON.stringify(content)], {
             type: "application/json",
         });
-        onDownload(blob, `document.json`)
+        onDownload(blob, `${data.title}.json`)
     };
 
     const onSaveHTML = () => {
@@ -64,7 +87,7 @@ const Navbar = () => {
         const blob = new Blob([content], {
             type: "text/html",
         });
-        onDownload(blob, `document.html`)
+        onDownload(blob, `${data.title}.html`)
     };
 
     const onSaveText = () => {
@@ -74,7 +97,7 @@ const Navbar = () => {
         const blob = new Blob([content], {
             type: "text/plain",
         });
-        onDownload(blob, `document.txt`)
+        onDownload(blob, `${data.title}.txt`)
     };
 
     // fn for image upload 
@@ -121,7 +144,7 @@ const Navbar = () => {
                 <div className="flex flex-col">
 
                     {/* doc input */}
-                    <DocumentInput />
+                    <DocumentInput title={data.title} id={data._id} />
 
                     {/* menubar */}
                     <div className="flex">
@@ -155,7 +178,7 @@ const Navbar = () => {
                                             </MenubarItem>
                                         </MenubarSubContent>
                                     </MenubarSub>
-                                    <MenubarItem>
+                                    <MenubarItem  onClick={onNewDocument}>
                                         <FilePlusIcon className="size-4 mr-2" />
                                         New Document
                                     </MenubarItem>

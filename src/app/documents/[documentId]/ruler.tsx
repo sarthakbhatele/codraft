@@ -40,7 +40,7 @@ const Ruler = () => {
                 if (isDraggingLeft) {
                     const maxLeftPosition = 816 - rightMargin - 100;
                     const newLeftPosition = Math.min(rawPosition, maxLeftPosition);
-                    setLeftMargin(newLeftPosition); // todo : make colabarotive
+                    setLeftMargin(newLeftPosition); 
                 }
                 else if (isDraggingRight) {
                     const maxRightPosition = 816 - (leftMargin + 100);
