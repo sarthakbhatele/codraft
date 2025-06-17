@@ -69,8 +69,8 @@ interface ClerkSessionClaims {
         rol: string;
         slg: string;
     };
-    // @ts-ignore
-    [key: string]: any;
+    //  [key: string]: any; (error during run build)
+    [key: string]: unknown;
 }
 
 export async function POST(req: Request) {
@@ -123,7 +123,7 @@ export async function POST(req: Request) {
         userInfo: {
             name,
             avatar: user.imageUrl,
-            //@ts-expect-error
+            //@ts-expect-error This is for different colors for users
             color,
         },
     });

@@ -1,5 +1,4 @@
 'use client';
-
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TaskList from '@tiptap/extension-task-list'
@@ -26,7 +25,8 @@ import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
 import Ruler from './ruler';
 
-import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
+// import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { Threads } from './threads';
 import { useStorage } from '@liveblocks/react';
 import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from '@/constants/margins';
