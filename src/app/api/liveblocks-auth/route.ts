@@ -69,6 +69,7 @@ interface ClerkSessionClaims {
         rol: string;
         slg: string;
     };
+    // @ts-ignore
     [key: string]: any;
 }
 
@@ -108,11 +109,22 @@ export async function POST(req: Request) {
         return new Response("Unauthorized", { status: 401 });
     }
 
+    // for different cursor colors for different user [assisted by gpt]
+    const name = user.fullName ?? user.id ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous"
+    let hash = 5381;
+    for (let i = 0; i < name.length; i++) {
+        hash = (hash * 33) ^ name.charCodeAt(i);
+    }
+    const hue = Math.abs(hash) % 360;
+    const color = `hsl(${hue}, 90%, 45%)`;
+
     // Generate Liveblocks session
     const session = liveblocks.prepareSession(user.id, {
         userInfo: {
-            name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
+            name,
             avatar: user.imageUrl,
+            //@ts-expect-error
+            color,
         },
     });
 

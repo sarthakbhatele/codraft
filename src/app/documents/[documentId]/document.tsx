@@ -23,7 +23,7 @@ export const Document = ({ preloadedDocument }: DocumentProps) => {
                 </div>  
 
                 <div className="pt-[144px] mt-2 print:pt-0 print:mt-0"> {/* og div style = pt-[114px] print:pt-0*/}
-                    <Editor />
+                    <Editor initialContent={document.initialContent} />
                 </div>
 
             </div>

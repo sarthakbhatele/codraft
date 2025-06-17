@@ -1,15 +1,15 @@
 export const templates = [
-    {
-        id: "blank",
-        label: "Blank Document",
-        imageUrl: "/blank-document.svg",
-        initialContent: ""
-    },
-    {
-        id: "business-letter",
-        label: "Business Letter",
-        imageUrl: "/business-letter.svg",
-        initialContent: `
+  {
+    id: "blank",
+    label: "Blank Document",
+    imageUrl: "/blank-document.svg",
+    initialContent: ""
+  },
+  {
+    id: "business-letter",
+    label: "Business Letter",
+    imageUrl: "/business-letter.svg",
+    initialContent: `
         <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5;">
   <div style="max-width: 800px; background: #fff; margin: 50px auto; padding: 50px; border: 1px solid #ddd; position: relative;">
 
@@ -51,34 +51,35 @@ export const templates = [
 </body>
 
         `
-    },
-    {
-        id: "cover-letter",
-        label: "Cover Letter",
-        imageUrl: "/cover-letter.svg",
-        initialContent: ""
-    },
-    {
-        id: "letter",
-        label: "Letter",
-        imageUrl: "/letter.svg"
-    },
-    {
-        id: "project-proposal",
-        label: "Project Proposal",
-        imageUrl: "/project-proposal.svg",
-        initialContent: ""
-    }, 
-    {
-        id: "resume",
-        label: "Resume",
-        imageUrl: "/resume.svg",
-        initialContent: ""
-    },
-    {
-        id: "software-proposal",
-        label: "Software Proposal",
-        imageUrl: "/software-proposal.svg",
-        initialContent: ""
-    },
+  },
+  {
+    id: "cover-letter",
+    label: "Cover Letter",
+    imageUrl: "/cover-letter.svg",
+    initialContent: ""
+  },
+  {
+    id: "letter",
+    label: "Letter",
+    imageUrl: "/letter.svg",
+     initialContent: ""
+  },
+  {
+    id: "project-proposal",
+    label: "Project Proposal",
+    imageUrl: "/project-proposal.svg",
+    initialContent: ""
+  },
+  {
+    id: "resume",
+    label: "Resume",
+    imageUrl: "/resume.svg", 
+    initialContent: ""
+  },
+  {
+    id: "software-proposal",
+    label: "Software Proposal",
+    imageUrl: "/software-proposal.svg",
+    initialContent: ""
+  },
 ];

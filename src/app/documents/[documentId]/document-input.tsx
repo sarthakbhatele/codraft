@@ -3,7 +3,7 @@ import { Id } from "../../../../convex/_generated/dataModel";
 import { useRef, useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
-import { useDebounce } from "@/hooks/use-debounce";
+// import { useDebounce } from "@/hooks/use-debounce";
 import { toast } from "sonner";
 import { useStatus } from "@liveblocks/react";
 import { LoaderIcon } from "lucide-react";
@@ -26,7 +26,7 @@ const DocumentInput = ({ title, id }: DocumentInputProps) => {
     const mutate = useMutation(api.documents.updateById);
 
 
-    const lastSavedValue = useRef(title);
+    // const lastSavedValue = useRef(title);
 
     // TERMONATINNG DEBOUNCE FOR NOW AS IT IS MESSING EITH UI
     // const debouncedUpdate = useDebounce((newValue: string) => {
